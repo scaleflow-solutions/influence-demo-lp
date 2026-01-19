@@ -34,12 +34,12 @@ export function Navbar() {
       >
         <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
           {/* Logo - Responsive sizes */}
-          <Link href="/" className="relative w-80 h-32 sm:w-[360px] sm:h-36 md:w-[420px] md:h-40 lg:w-[500px] lg:h-48">
+          <Link href="/" className="relative w-[420px] h-40 sm:w-[440px] sm:h-42 md:w-[460px] md:h-44 lg:w-[500px] lg:h-48">
             <Image
               src="/assets/influence-logo.png"
               alt="Influence Group"
               fill
-              sizes="(max-width: 640px) 320px, (max-width: 768px) 360px, (max-width: 1024px) 420px, 500px"
+              sizes="(max-width: 640px) 420px, (max-width: 768px) 440px, (max-width: 1024px) 460px, 500px"
               className="object-contain object-left"
               priority
               quality={85}

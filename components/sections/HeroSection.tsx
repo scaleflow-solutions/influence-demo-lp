@@ -80,7 +80,7 @@ export function HeroSection() {
       </motion.div>
 
       {/* Content */}
-      <div className="relative z-20 container mx-auto px-6 lg:px-12 pt-32 md:pt-40 lg:pt-48">
+      <div className="relative z-20 container mx-auto px-6 lg:px-12 pt-44 sm:pt-48 md:pt-40 lg:pt-48">
         <div className="max-w-7xl mx-auto text-left">
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight max-w-4xl">
