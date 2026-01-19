@@ -2,11 +2,12 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [useVideo, setUseVideo] = useState(true);
+  const [mediaType, setMediaType] = useState<"video" | "gif" | "gradient">("gif");
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -16,13 +17,17 @@ export function HeroSection() {
   // Simple parallax for background
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
 
-  // Check if video exists on mount
+  // Check if optimized video exists, otherwise use GIF
   useEffect(() => {
     fetch("/assets/hero-bg.mp4", { method: "HEAD" })
       .then((res) => {
-        if (!res.ok) setUseVideo(false);
+        if (res.ok) {
+          setMediaType("video");
+        }
       })
-      .catch(() => setUseVideo(false));
+      .catch(() => {
+        // Video doesn't exist, keep using GIF (default)
+      });
   }, []);
 
   return (
@@ -30,12 +35,12 @@ export function HeroSection() {
       ref={sectionRef}
       className="relative min-h-screen flex items-start overflow-hidden"
     >
-      {/* Background Video (preferred) or fallback gradient */}
+      {/* Background: Video (preferred) > GIF (fallback) > Gradient */}
       <motion.div
         className="absolute inset-0 z-0"
         style={{ opacity }}
       >
-        {useVideo ? (
+        {mediaType === "video" ? (
           <>
             <video
               autoPlay
@@ -56,8 +61,18 @@ export function HeroSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark-lighter to-influence-red/20 animate-pulse" />
             )}
           </>
+        ) : mediaType === "gif" ? (
+          /* GIF background (current) - will be replaced with video for better performance */
+          <Image
+            src="/assets/hero-background.gif"
+            alt=""
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
         ) : (
-          /* Fallback animated gradient if no video */
+          /* Fallback gradient if no media */
           <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark-lighter to-influence-red/10" />
         )}
         {/* Bottom gradient fade for smooth transition to next section */}
