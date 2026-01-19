@@ -100,7 +100,7 @@ export function EcosystemSection() {
           transition={{ duration: 0.8 }}
           className="mb-20"
         >
-          <h2 className="text-6xl md:text-8xl font-bold mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6">
             THE <span className="text-influence-red">ECOSYSTEM</span>
           </h2>
           <p className="text-xl text-white/60 max-w-2xl">
@@ -200,7 +200,7 @@ function CompanyCard({ company, variants, index }: CompanyCardProps) {
         <div className="relative z-10 h-full flex flex-col justify-between">
           <div>
             <motion.h3
-              className="text-4xl md:text-5xl font-bold mb-3 group-hover:text-influence-red transition-colors duration-300"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 group-hover:text-influence-red transition-colors duration-300"
               whileHover={{ scale: 1.05 }}
             >
               {company.name}

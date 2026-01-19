@@ -67,7 +67,7 @@ export function WorkSection() {
           transition={{ duration: 0.8 }}
           className="mb-20"
         >
-          <h2 className="text-6xl md:text-8xl font-bold mb-6">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6">
             SELECTED <span className="text-influence-red">WORK</span>
           </h2>
           <p className="text-xl text-white/60 max-w-2xl">
@@ -128,7 +128,7 @@ function ProjectCard({ project, index, isInView }: ProjectCardProps) {
       style={{ opacity }}
     >
       {/* Project Number */}
-      <div className="absolute -top-8 left-0 text-[120px] md:text-[200px] font-bold text-white/5 leading-none select-none">
+      <div className="absolute -top-4 md:-top-8 left-0 text-[60px] sm:text-[80px] md:text-[120px] lg:text-[200px] font-bold text-white/5 leading-none select-none">
         {project.number}
       </div>
 
@@ -145,10 +145,10 @@ function ProjectCard({ project, index, isInView }: ProjectCardProps) {
             <div className="h-px flex-1 bg-influence-red/30" />
           </div>
 
-          <h3 className="text-5xl md:text-7xl font-bold mb-2 leading-none">
+          <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-2 leading-none">
             {project.client}
           </h3>
-          <p className="text-2xl md:text-3xl text-white/50 font-light">
+          <p className="text-xl sm:text-2xl md:text-3xl text-white/50 font-light">
             {project.project}
           </p>
         </div>
@@ -182,7 +182,7 @@ function ProjectCard({ project, index, isInView }: ProjectCardProps) {
       <motion.div
         className={`relative ${isEven ? "md:order-2" : "md:order-1"}`}
       >
-        <div className="relative h-[400px] md:h-[600px] overflow-hidden rounded-2xl group cursor-pointer">
+        <div className="relative h-[280px] sm:h-[350px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl group cursor-pointer">
           {/* Placeholder gradient (since we don't have actual images) */}
           <motion.div
             className="absolute inset-0 bg-gradient-to-br from-influence-red/20 via-purple-500/20 to-blue-500/20"

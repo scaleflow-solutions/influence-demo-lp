@@ -16,7 +16,7 @@ export default function ProjectsPage() {
       <Navbar />
       <main className="relative bg-dark min-h-screen">
         {/* Hero Section */}
-        <section className="relative pt-40 pb-20 overflow-hidden">
+        <section className="relative pt-28 sm:pt-32 md:pt-40 pb-12 md:pb-20 overflow-hidden">
           {/* Background gradient */}
           <div className="absolute inset-0 bg-gradient-to-b from-influence-red/5 via-transparent to-transparent" />
 
@@ -36,7 +36,7 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 max-w-4xl"
+              className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold text-white mb-6 max-w-4xl"
             >
               Projects That{" "}
               <span className="text-influence-red italic">Define</span> Impact
@@ -47,7 +47,7 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl md:text-2xl text-white/60 max-w-2xl"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/60 max-w-2xl"
             >
               Explore our portfolio of successful campaigns that have shaped
               brands, driven engagement, and delivered measurable results across
@@ -124,12 +124,12 @@ export default function ProjectsPage() {
               <div className="absolute inset-0 bg-dark-lighter/80" />
 
               {/* Content */}
-              <div className="relative z-10 px-8 py-16 md:px-16 md:py-20 text-center">
-                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              <div className="relative z-10 px-6 py-12 sm:px-8 sm:py-16 md:px-16 md:py-20 text-center">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
                   Ready to Create Your Next{" "}
                   <span className="text-influence-red">Success Story</span>?
                 </h2>
-                <p className="text-lg text-white/60 mb-10 max-w-2xl mx-auto">
+                <p className="text-base sm:text-lg text-white/60 mb-8 md:mb-10 max-w-2xl mx-auto">
                   Let&apos;s discuss how we can amplify your brand&apos;s
                   influence and deliver exceptional results.
                 </p>

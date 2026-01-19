@@ -64,7 +64,7 @@ export function TeamSection() {
           </span>
 
           {/* Title */}
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6">
             <span className="text-influence-red italic">Faces</span> Behind
             Influence
           </h2>
@@ -113,7 +113,7 @@ function TeamCard({
   index: number;
 }) {
   return (
-    <div className="flex-shrink-0 w-[280px] md:w-[320px] group">
+    <div className="flex-shrink-0 w-[220px] sm:w-[260px] md:w-[300px] lg:w-[320px] group">
       {/* Image Container */}
       <div className="relative aspect-[3/4] mb-5 rounded-lg overflow-hidden bg-dark-lighter">
         <Image

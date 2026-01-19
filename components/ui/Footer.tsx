@@ -14,8 +14,8 @@ export function Footer() {
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* CTA */}
-          <div className="flex-1">
-            <h3 className="text-4xl md:text-6xl font-bold mb-4">
+          <div className="flex-1 text-center md:text-left">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-4">
               HAVE A PROJECT
               <br />
               <span className="text-influence-red">IN MIND?</span>
@@ -37,13 +37,13 @@ export function Footer() {
           </div>
 
           {/* Social Links */}
-          <div className="flex flex-col items-end gap-4">
-            <div className="flex gap-6">
+          <div className="flex flex-col items-center md:items-end gap-4">
+            <div className="flex gap-4 sm:gap-6">
               <SocialLink href="https://twitter.com/influencegroup" label="TWITTER" />
               <SocialLink href="https://linkedin.com/company/influencegroup" label="LINKEDIN" />
               <SocialLink href="https://instagram.com/influencegroup" label="INSTAGRAM" />
             </div>
-            <p className="text-sm text-white/50 mt-8">
+            <p className="text-sm text-white/50 mt-4 md:mt-8">
               © {new Date().getFullYear()} INFLUENCE GROUP
             </p>
           </div>

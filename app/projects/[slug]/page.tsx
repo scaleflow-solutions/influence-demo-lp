@@ -51,7 +51,7 @@ export default function ProjectDetailPage() {
       <Navbar />
       <main className="relative bg-dark min-h-screen">
         {/* Hero Section */}
-        <section className="relative pt-32 pb-0 overflow-hidden">
+        <section className="relative pt-24 sm:pt-28 md:pt-32 pb-0 overflow-hidden">
           {/* Back Link */}
           <div className="container mx-auto px-6 mb-8">
             <motion.div
@@ -98,7 +98,7 @@ export default function ProjectDetailPage() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-4"
                 >
                   {project.title}
                 </motion.h1>
@@ -108,7 +108,7 @@ export default function ProjectDetailPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="text-2xl text-influence-red font-medium mb-6"
+                  className="text-xl sm:text-2xl text-influence-red font-medium mb-6"
                 >
                   {project.client}
                 </motion.p>
@@ -147,12 +147,12 @@ export default function ProjectDetailPage() {
                 {project.kpis.map((kpi, index) => (
                   <div
                     key={kpi.label}
-                    className="bg-dark-lighter/50 border border-dark-border rounded-lg p-6 group hover:border-influence-red/30 transition-colors duration-300"
+                    className="bg-dark-lighter/50 border border-dark-border rounded-lg p-4 sm:p-5 md:p-6 group hover:border-influence-red/30 transition-colors duration-300"
                   >
-                    <p className="text-3xl md:text-4xl font-bold text-white group-hover:text-influence-red transition-colors duration-300">
+                    <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-white group-hover:text-influence-red transition-colors duration-300">
                       {kpi.value}
                     </p>
-                    <p className="text-sm text-white/50 mt-2 tracking-wide">
+                    <p className="text-xs sm:text-sm text-white/50 mt-1 sm:mt-2 tracking-wide">
                       {kpi.label}
                     </p>
                   </div>
@@ -169,7 +169,7 @@ export default function ProjectDetailPage() {
             className="mt-16 relative"
           >
             <div className="container mx-auto px-6">
-              <div className="relative aspect-[21/9] rounded-t-2xl overflow-hidden">
+              <div className="relative aspect-[16/9] md:aspect-[21/9] rounded-t-xl md:rounded-t-2xl overflow-hidden">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -184,11 +184,11 @@ export default function ProjectDetailPage() {
         </section>
 
         {/* Content Section */}
-        <section className="py-20">
+        <section className="py-12 md:py-20">
           <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-3 gap-16">
+            <div className="grid lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
               {/* Main Content */}
-              <div className="lg:col-span-2 space-y-12">
+              <div className="lg:col-span-2 space-y-8 md:space-y-12">
                 {/* Description */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
@@ -196,10 +196,10 @@ export default function ProjectDetailPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h2 className="text-2xl font-bold text-white mb-4">
+                  <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
                     Overview
                   </h2>
-                  <p className="text-lg text-white/70 leading-relaxed">
+                  <p className="text-base md:text-lg text-white/70 leading-relaxed">
                     {project.description}
                   </p>
                 </motion.div>
@@ -211,10 +211,10 @@ export default function ProjectDetailPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h2 className="text-2xl font-bold text-white mb-4">
+                  <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
                     The Challenge
                   </h2>
-                  <p className="text-lg text-white/70 leading-relaxed">
+                  <p className="text-base md:text-lg text-white/70 leading-relaxed">
                     {project.challenge}
                   </p>
                 </motion.div>
@@ -226,10 +226,10 @@ export default function ProjectDetailPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h2 className="text-2xl font-bold text-white mb-4">
+                  <h2 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">
                     Our Solution
                   </h2>
-                  <p className="text-lg text-white/70 leading-relaxed">
+                  <p className="text-base md:text-lg text-white/70 leading-relaxed">
                     {project.solution}
                   </p>
                 </motion.div>
@@ -241,7 +241,7 @@ export default function ProjectDetailPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h2 className="text-2xl font-bold text-white mb-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
                     Gallery
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -272,9 +272,9 @@ export default function ProjectDetailPage() {
                 transition={{ duration: 0.6 }}
                 className="lg:col-span-1"
               >
-                <div className="sticky top-32 space-y-8">
+                <div className="sticky top-24 md:top-32 space-y-6 md:space-y-8">
                   {/* Project Info Card */}
-                  <div className="bg-dark-lighter/50 border border-dark-border rounded-xl p-8">
+                  <div className="bg-dark-lighter/50 border border-dark-border rounded-xl p-5 sm:p-6 md:p-8">
                     <h3 className="text-lg font-semibold text-white mb-6">
                       Project Details
                     </h3>
@@ -324,7 +324,7 @@ export default function ProjectDetailPage() {
                   </div>
 
                   {/* CTA */}
-                  <div className="bg-gradient-to-br from-influence-red/20 to-dark-lighter border border-influence-red/20 rounded-xl p-8">
+                  <div className="bg-gradient-to-br from-influence-red/20 to-dark-lighter border border-influence-red/20 rounded-xl p-5 sm:p-6 md:p-8">
                     <h3 className="text-lg font-semibold text-white mb-3">
                       Start Your Project
                     </h3>

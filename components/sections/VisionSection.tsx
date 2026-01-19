@@ -85,12 +85,12 @@ export function VisionSection() {
             transition={{ duration: 0.8 }}
             className="max-w-5xl mx-auto text-center"
           >
-            <h3 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-8 leading-tight">
               Delivering{" "}
               <span className="text-influence-red">Outstanding Consultancy</span>{" "}
               to Strengthen Market Positioning
             </h3>
-            <p className="text-xl text-white/70 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed">
               Through a result-driven approach and a synergistic ecosystem of
               specialized capabilities, we empower organizations to achieve
               unprecedented impact across the Middle East and beyond.
@@ -111,9 +111,9 @@ function StatCard({ number, label }: { number: string; label: string }) {
       transition={{ duration: 0.6 }}
       className="text-center"
     >
-      <div className="glass glass-hover rounded-2xl p-8 h-full">
+      <div className="glass glass-hover rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 h-full">
         <motion.h4
-          className="text-5xl md:text-7xl font-bold text-influence-red mb-4"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-influence-red mb-4"
           whileHover={{ scale: 1.1 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
