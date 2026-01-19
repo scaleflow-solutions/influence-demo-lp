@@ -1,11 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [useVideo, setUseVideo] = useState(true);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -15,46 +16,53 @@ export function HeroSection() {
   // Simple parallax for background
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
 
+  // Check if video exists on mount
+  useEffect(() => {
+    fetch("/assets/hero-bg.mp4", { method: "HEAD" })
+      .then((res) => {
+        if (!res.ok) setUseVideo(false);
+      })
+      .catch(() => setUseVideo(false));
+  }, []);
+
   return (
     <section
       ref={sectionRef}
       className="relative min-h-screen flex items-start overflow-hidden"
     >
-      {/* Background GIF */}
+      {/* Background Video (preferred) or fallback gradient */}
       <motion.div
         className="absolute inset-0 z-0"
         style={{ opacity }}
       >
-        <Image
-          src="/assets/hero-background.gif"
-          alt=""
-          fill
-          className="object-cover"
-          priority
-          unoptimized
-        />
+        {useVideo ? (
+          <>
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              onLoadedData={() => setVideoLoaded(true)}
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+                videoLoaded ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <source src="/assets/hero-bg.mp4" type="video/mp4" />
+              <source src="/assets/hero-bg.webm" type="video/webm" />
+            </video>
+            {/* Loading placeholder */}
+            {!videoLoaded && (
+              <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark-lighter to-influence-red/20 animate-pulse" />
+            )}
+          </>
+        ) : (
+          /* Fallback animated gradient if no video */
+          <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark-lighter to-influence-red/10" />
+        )}
         {/* Bottom gradient fade for smooth transition to next section */}
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-dark via-dark/60 to-transparent" />
       </motion.div>
-
-      {/* Background Video - commented out, add hero-bg-video.mp4 to /public/assets/ to use
-      <motion.div
-        className="absolute inset-0 z-0"
-        style={{ opacity }}
-      >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
-        >
-          <source src="/assets/hero-bg-video.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-dark/50" />
-        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-dark via-dark/80 to-transparent" />
-      </motion.div>
-      */}
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-6 lg:px-12 pt-32 md:pt-40 lg:pt-48">

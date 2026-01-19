@@ -39,7 +39,13 @@ export function ProjectCard({
             src={project.image}
             alt={project.title}
             fill
+            sizes={isFeatured
+              ? "(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
+              : "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+            }
             className="object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+            quality={80}
           />
 
           {/* Overlay */}

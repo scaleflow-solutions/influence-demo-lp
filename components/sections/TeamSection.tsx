@@ -120,7 +120,10 @@ function TeamCard({
           src={member.image}
           alt={member.name}
           fill
+          sizes="(max-width: 640px) 220px, (max-width: 768px) 260px, (max-width: 1024px) 300px, 320px"
           className="object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+          quality={75}
         />
 
         {/* Hover overlay */}

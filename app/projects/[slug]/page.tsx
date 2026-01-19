@@ -174,8 +174,10 @@ export default function ProjectDetailPage() {
                   src={project.image}
                   alt={project.title}
                   fill
+                  sizes="100vw"
                   className="object-cover"
                   priority
+                  quality={85}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent" />
               </div>
@@ -256,7 +258,10 @@ export default function ProjectDetailPage() {
                           src={image}
                           alt={`${project.title} gallery ${index + 1}`}
                           fill
+                          sizes={index === 0 ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
                           className="object-cover hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                          quality={80}
                         />
                       </div>
                     ))}

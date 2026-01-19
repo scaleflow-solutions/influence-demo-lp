@@ -39,8 +39,10 @@ export function Navbar() {
               src="/assets/influence-logo.png"
               alt="Influence Group"
               fill
+              sizes="(max-width: 640px) 320px, (max-width: 768px) 360px, (max-width: 1024px) 420px, 500px"
               className="object-contain object-left"
               priority
+              quality={85}
             />
           </Link>
 
