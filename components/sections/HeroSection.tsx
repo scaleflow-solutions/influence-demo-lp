@@ -18,7 +18,7 @@ export function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-start overflow-hidden"
     >
       {/* Background GIF */}
       <motion.div
@@ -57,7 +57,7 @@ export function HeroSection() {
       */}
 
       {/* Content */}
-      <div className="relative z-20 container mx-auto px-6 lg:px-12">
+      <div className="relative z-20 container mx-auto px-6 lg:px-12 pt-32 md:pt-40 lg:pt-48">
         <div className="max-w-7xl mx-auto text-left">
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight max-w-4xl">
