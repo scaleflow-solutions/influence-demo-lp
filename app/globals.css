@@ -36,6 +36,11 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
+  /* Prevent scrolling when modal is open */
+  body.modal-open {
+    overflow: hidden;
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 8px;

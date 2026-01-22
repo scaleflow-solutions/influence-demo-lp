@@ -20,12 +20,12 @@ export function CustomCursor() {
       cursorY.set(e.clientY - 10);
     };
 
-    window.addEventListener("mousemove", moveCursor);
+    window.addEventListener("mousemove", moveCursor, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", moveCursor);
     };
-  }, [cursorX, cursorY]);
+  }, []); // Motion values are refs and don't need to be dependencies
 
   if (!isMounted) return null;
 

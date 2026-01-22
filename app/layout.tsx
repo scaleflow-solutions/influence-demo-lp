@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SmoothScroll } from "@/components/ui/SmoothScroll";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { FilmGrain } from "@/components/ui/FilmGrain";
-import { ContactModalProvider } from "@/lib/contact-modal-context";
-import { ContactModal } from "@/components/ui/ContactModal";
+import { ClientProviders } from "@/components/providers/ClientProviders";
 
 export const metadata: Metadata = {
   title: "Influence Group | The Architecture of Influence",
@@ -25,12 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className="relative overflow-x-hidden">
-        <ContactModalProvider>
-          <FilmGrain />
-          <CustomCursor />
-          <SmoothScroll>{children}</SmoothScroll>
-          <ContactModal />
-        </ContactModalProvider>
+        <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
   );

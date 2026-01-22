@@ -1,33 +1,31 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [mediaType, setMediaType] = useState<"video" | "gif" | "gradient">("gif");
+  const [videoError, setVideoError] = useState(false);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  // Simple parallax for background
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
-
-  // Check if optimized video exists, otherwise use GIF
+  // Use CSS-based parallax effect via scroll listener
   useEffect(() => {
-    fetch("/assets/hero-bg.mp4", { method: "HEAD" })
-      .then((res) => {
-        if (res.ok) {
-          setMediaType("video");
-        }
-      })
-      .catch(() => {
-        // Video doesn't exist, keep using GIF (default)
-      });
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+
+      const scrolled = window.scrollY;
+      const sectionHeight = sectionRef.current.offsetHeight;
+      const opacity = Math.max(0, 1 - (scrolled / sectionHeight) * 2);
+
+      const bgElement = sectionRef.current.querySelector('[data-hero-bg]') as HTMLElement;
+      if (bgElement) {
+        bgElement.style.opacity = String(opacity);
+      }
+    };
+
+    // Use passive listener for better scroll performance
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -35,34 +33,37 @@ export function HeroSection() {
       ref={sectionRef}
       className="relative min-h-screen flex items-start overflow-hidden"
     >
-      {/* Background: Video (preferred) > GIF (fallback) > Gradient */}
-      <motion.div
-        className="absolute inset-0 z-0"
-        style={{ opacity }}
+      {/* Background: Video (preferred) > GIF (fallback) */}
+      <div
+        data-hero-bg
+        className="absolute inset-0 z-0 transition-opacity"
+        style={{ opacity: 1 }}
       >
-        {mediaType === "video" ? (
+        {/* Video background - loads by default (10MB vs 24MB GIF) */}
+        {!videoError ? (
           <>
             <video
               autoPlay
               loop
               muted
               playsInline
-              preload="auto"
+              preload="metadata"
               onLoadedData={() => setVideoLoaded(true)}
+              onError={() => setVideoError(true)}
               className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
                 videoLoaded ? "opacity-100" : "opacity-0"
               }`}
+              poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230A0A0A'/%3E%3Cstop offset='50%25' style='stop-color:%231A1A1A'/%3E%3Cstop offset='100%25' style='stop-color:rgba(227,30,36,0.2)'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1920' height='1080' fill='url(%23g)'/%3E%3C/svg%3E"
             >
-              <source src="/assets/hero-bg.mp4" type="video/mp4" />
-              <source src="/assets/hero-bg.webm" type="video/webm" />
+              <source src="/assets/hero-bg-video.mp4" type="video/mp4" />
             </video>
             {/* Loading placeholder */}
             {!videoLoaded && (
-              <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark-lighter to-influence-red/20 animate-pulse" />
+              <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark-lighter to-influence-red/20" />
             )}
           </>
-        ) : mediaType === "gif" ? (
-          /* GIF background (current) - will be replaced with video for better performance */
+        ) : (
+          /* GIF fallback only if video fails to load */
           <Image
             src="/assets/hero-background.gif"
             alt=""
@@ -71,13 +72,10 @@ export function HeroSection() {
             priority
             unoptimized
           />
-        ) : (
-          /* Fallback gradient if no media */
-          <div className="absolute inset-0 bg-gradient-to-br from-dark via-dark-lighter to-influence-red/10" />
         )}
         {/* Bottom gradient fade for smooth transition to next section */}
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-dark via-dark/60 to-transparent" />
-      </motion.div>
+      </div>
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-6 lg:px-12 pt-44 sm:pt-48 md:pt-40 lg:pt-48">

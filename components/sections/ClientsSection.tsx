@@ -1,8 +1,5 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-
 // Client names - add actual logo paths when available
 const clientsRow1 = [
   "Cairo Festival City",
@@ -25,34 +22,20 @@ const clientsRow2 = [
 ];
 
 export function ClientsSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
-
   return (
     <section
-      ref={sectionRef}
       className="relative py-16 md:py-20 bg-dark overflow-hidden"
     >
       {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-        className="container mx-auto px-6 mb-10"
-      >
+      <div className="container mx-auto px-6 mb-10">
         <h2 className="text-2xl md:text-3xl font-bold">
           <span className="text-influence-red">OUR</span>{" "}
           <span className="text-white">CLIENTS</span>
         </h2>
-      </motion.div>
+      </div>
 
       {/* Logos Marquee */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="relative"
-      >
+      <div className="relative">
         {/* Gradient masks */}
         <div className="absolute left-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-r from-dark to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-l from-dark to-transparent z-10 pointer-events-none" />
@@ -77,7 +60,7 @@ export function ClientsSection() {
             ))}
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

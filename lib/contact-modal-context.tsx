@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, useMemo, ReactNode } from "react";
 
 interface ContactModalContextType {
   isOpen: boolean;
@@ -18,17 +18,23 @@ export function ContactModalProvider({ children }: { children: ReactNode }) {
   const openModal = useCallback(() => {
     setIsOpen(true);
     // Prevent body scroll when modal is open
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("modal-open");
   }, []);
 
   const closeModal = useCallback(() => {
     setIsOpen(false);
     // Restore body scroll when modal is closed
-    document.body.style.overflow = "";
+    document.body.classList.remove("modal-open");
   }, []);
 
+  // Memoize context value to prevent unnecessary re-renders
+  const value = useMemo(
+    () => ({ isOpen, openModal, closeModal }),
+    [isOpen, openModal, closeModal]
+  );
+
   return (
-    <ContactModalContext.Provider value={{ isOpen, openModal, closeModal }}>
+    <ContactModalContext.Provider value={value}>
       {children}
     </ContactModalContext.Provider>
   );
